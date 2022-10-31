@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  description: |
+    Connector Builder Server API
+
+  version: "1.0.0"
+  title: Connector Builder Server API
+  contact:
+    email: myemail@gmail.com
+  license:
+    name: MIT
+    url: "https://opensource.org/licenses/MIT"
+
+paths:
+  /hello_world:
+    get:
+      description: "Sample endpoint"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hello:
+                    type: string
