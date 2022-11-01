@@ -8,7 +8,7 @@ from fastapi import (  # noqa: F401
 )
 
 from openapi_python_test.generated.models.hello_world_get200_response import HelloWorldGet200Response
-
+import inspect
 
 class DefaultApi(ABC): 
   # autogenned, contains pythonic signature of api
@@ -21,6 +21,10 @@ def initialize_router(api: DefaultApi) -> APIRouter:
     router = APIRouter()
     # Directly add the method as a route implementation 
     # instead of adding via decoration (which is the current approach)
+    print("HII")
+    print(api.hello_world)
+    # setattr(api, "__signature__")
+
     router.add_api_route(
         "/hello_world",
         endpoint=api.hello_world,
@@ -29,6 +33,7 @@ def initialize_router(api: DefaultApi) -> APIRouter:
             200: {"model": HelloWorldGet200Response, "description": "Successful operation"},
         }
     )
+    
     
     # for each endpoint, do the same thing...
     # ...
