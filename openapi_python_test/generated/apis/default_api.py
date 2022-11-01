@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from abc import ABC, abstractmethod
-from typing import Callable, Dict, List  # noqa: F401
+from typing import Callable  # noqa: F401
 
 from fastapi import (  # noqa: F401
     APIRouter
@@ -27,7 +27,6 @@ def _assert_signature_is_set(method: Callable) -> None:
     This method is sort of a workaround. It tells the developer how to fix the problem if it's detected.
     """
     try:
-        print('0')
         inspect.signature(method)
     except ValueError as e:
         # Based on empirical observation, the call to inspect fails with a ValueError
@@ -50,7 +49,8 @@ def initialize_router(api: DefaultApi) -> APIRouter:
         methods=["GET"],
         responses={
             200: {"model": HelloWorldGet200Response, "description": "Successful operation"},
-        }
+        },
+        tags=["default"]
     )
     
     return router
