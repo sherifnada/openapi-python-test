@@ -16,7 +16,7 @@ class DefaultApi(ABC):
      """ hello world """
 
 
-def _set_signature_if_not_set(method: Callable) -> None:
+def _assert_signature_is_set(method: Callable) -> None:
     """
     APIRouter().add_api_route expects the input method to have a signature. It gets signatures
     by running inspect.signature(method) under the hood. 
@@ -43,7 +43,7 @@ def _set_signature_if_not_set(method: Callable) -> None:
 def initialize_router(api: DefaultApi) -> APIRouter:
     router = APIRouter()
     
-    _set_signature_if_not_set(api.hello_world)
+    _assert_signature_is_set(api.hello_world)
     router.add_api_route(
         "/hello_world",
         endpoint=api.hello_world,
